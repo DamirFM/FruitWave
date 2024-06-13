@@ -17,19 +17,20 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { CoursesComponent } from './courses.component';
-import { CourseComponent } from './course/course.component';
-import { CoursesService } from './courses.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
+import { HeaderComponent } from './components/header/header.component';
+import { HomeComponent } from './pages/home/home.component';
+import { ProductsHeaderComponent } from './pages/components/products-header/products-header.component';
 
 // NgModule decorator is a function that takes a metadata object that tells Angular 
 // how to compile and launch the application.
 @NgModule({
   declarations: [
     AppComponent,
-    CoursesComponent,
-    CourseComponent
+    HeaderComponent,
+    HomeComponent,
+    ProductsHeaderComponent,
   ],
   imports: [
     BrowserModule,
@@ -51,7 +52,7 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule,
   ],
   providers: [
-    CoursesService
+   
   ],
   bootstrap: [AppComponent]
 })
