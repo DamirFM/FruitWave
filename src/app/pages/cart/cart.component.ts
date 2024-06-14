@@ -1,20 +1,29 @@
 import { Component, OnInit } from '@angular/core';
+import { Cart, CartItem } from 'src/app/models/cart.model';
 
 @Component({
   selector: 'app-cart',
-  template: `
-    <p>
-      cart works!
-    </p>
-  `,
-  styles: [
-  ]
+  templateUrl: './cart.component.html',
+  
 })
 export class CartComponent implements OnInit {
+[x: string]: any;
+
+  cart: Cart = {items:[{
+    product: 'https://via.placeholder.com/150',
+    name: 'Title',
+    price: 150,
+    quantity: 1,
+    id: 1,
+  }]};
+  //dataSource - is an array of CartItem objects 
+  dataSource: Array<CartItem> = [];
+  displayedColumns:  Array<string> = ['product', 'name', 'price', 'quantity', 'total'];
 
   constructor() { }
 
   ngOnInit(): void {
+    this.dataSource = this.cart.items;
   }
 
 }
