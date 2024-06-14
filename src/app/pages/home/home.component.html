@@ -3,11 +3,45 @@
   class="min-h-full max-w-7xl mx-auto border-x"
 >
     <mat-drawer mode="side" opened="true" class="p-6 bg-red-100">
-        <div>Filters</div>
+        <app-filters (categoryPickChange)="onCategoryChange($event)"></app-filters>
     </mat-drawer>
     <mat-drawer-content class="p-6 bg-red-200">
     <!-- Here we going to create new component -->
-        <app-products-header></app-products-header>
+    <!-- columsCountChange - is a name of the event we recieved from pp-products-header-->
+        <app-products-header (columsCountChange)="onColumsCountChange($event)"></app-products-header>
+        <!--[cols]="cols" import for dynamic cols -->
+        <!-- [rowHeight]="rowHeight" import as well -->
+        <mat-grid-list 
+        gutterSize="16"
+        [cols]="cols"
+        [rowHeight]="rowHeight"
+        >
+            <mat-grid-tile >
+                <!-- fullWidthMode this mode works only when cols === 1  -->
+                <app-product-box class="w-full" [fullWidthMode]="cols === 1" ></app-product-box>
+            </mat-grid-tile>
+            <mat-grid-tile >
+                <!-- fullWidthMode this mode works only when cols === 1  -->
+                <app-product-box class="w-full" [fullWidthMode]="cols === 1" ></app-product-box>
+            </mat-grid-tile>
+            <mat-grid-tile >
+                <!-- fullWidthMode this mode works only when cols === 1  -->
+                <app-product-box class="w-full" [fullWidthMode]="cols === 1" ></app-product-box>
+            </mat-grid-tile>
+            <mat-grid-tile >
+                <!-- fullWidthMode this mode works only when cols === 1  -->
+                <app-product-box class="w-full" [fullWidthMode]="cols === 1" ></app-product-box>
+            </mat-grid-tile>
+            <mat-grid-tile >
+                <!-- fullWidthMode this mode works only when cols === 1  -->
+                <app-product-box class="w-full" [fullWidthMode]="cols === 1" ></app-product-box>
+            </mat-grid-tile>
+            <mat-grid-tile >
+                <!-- fullWidthMode this mode works only when cols === 1  -->
+                <app-product-box class="w-full" [fullWidthMode]="cols === 1" ></app-product-box>
+            </mat-grid-tile>
+            
+        </mat-grid-list>
     </mat-drawer-content>
     
 </mat-drawer-container>

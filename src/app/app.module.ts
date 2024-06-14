@@ -22,6 +22,9 @@ import { HttpClientModule } from '@angular/common/http';
 import { HeaderComponent } from './components/header/header.component';
 import { HomeComponent } from './pages/home/home.component';
 import { ProductsHeaderComponent } from './pages/components/products-header/products-header.component';
+import { FiltersComponent } from './pages/components/filters/filters.component';
+import { ProductBoxComponent } from './pages/components/product-box/product-box.component';
+import { CartComponent } from './pages/cart/cart.component';
 
 // NgModule decorator is a function that takes a metadata object that tells Angular 
 // how to compile and launch the application.
@@ -31,6 +34,9 @@ import { ProductsHeaderComponent } from './pages/components/products-header/prod
     HeaderComponent,
     HomeComponent,
     ProductsHeaderComponent,
+    FiltersComponent,
+    ProductBoxComponent,
+    CartComponent,
   ],
   imports: [
     BrowserModule,
