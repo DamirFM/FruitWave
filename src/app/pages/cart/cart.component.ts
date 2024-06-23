@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Cart, CartItem } from 'src/app/models/cart.model';
+import { CartService } from 'src/app/services/cart.service';
 // @Component({...})
 // Decorator that marks the class as an Angular component and provides metadata about the component.
 @Component({
@@ -44,7 +45,7 @@ export class CartComponent implements OnInit {
 
 
   // Defines a constructor for the CartComponent class. The constructor is empty because no initial setup or dependency injection is needed.
-  constructor() { }
+  constructor(private CartService: CartService) { }
 
   // Defines the ngOnInit method, which is a lifecycle hook that Angular calls after creating the component. This method is used to perform component initialization logic.
   ngOnInit(): void {
@@ -53,7 +54,8 @@ export class CartComponent implements OnInit {
     // Sets the dataSource property to the items in the cart. This populates the dataSource array with the cart items, making them available for display in the table.
     this.dataSource = this.cart.items;
   }
-  getTotal(): number {
-    return this.cart.items.reduce((acc, item) => acc + item.price * item.quantity, 0);
+  // Defines a method called getTotal that calculates the total price of all items in the cart. The method uses the reduce function to iterate over the items array and calculate the total price by summing the product of the item price and quantity for each item.
+  getTotal(items: Array<CartItem>): number {
+   return this.CartService.getTotal(this.cart.items);
   }
 }
