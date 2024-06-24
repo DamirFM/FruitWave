@@ -7,17 +7,14 @@
     />
     
     <div class="flex-1">
-      <div>
-        <h5>{{ product.category }}</h5>
-        <p
-          class="truncate hover:whitespace-normal"
-          [ngClass]="{ truncate: !fullWidthMode }"
-        >
-          {{ product.title }}
-        </p>
-        <p *ngIf="fullWidthMode">
-          {{ product.description  }}
-        </p>
+      <h5>{{ product.category }}</h5>
+      <p class="truncate hover:whitespace-normal" [ngClass]="{ truncate: !fullWidthMode }">
+        {{ product.title }}
+      </p>
+      <div class="description-container max-h-[100px] md:max-h-[200px] overflow-y-auto">
+        
+    
+        <p *ngIf="fullWidthMode" class="description-text">{{ product.description }}</p>
       </div>
       <div class="flex justify-between items-center mt-2">
         <span class="text-red-400">{{ product.price | currency }}</span>
