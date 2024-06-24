@@ -1,15 +1,12 @@
-<!-- fullWidthMode this mode works only when cols === 1  -->
 <mat-card *ngIf="product" [ngClass]="{ 'text-center': !fullWidthMode }">
-  <div [ngClass]="{ flex: fullWidthMode }">
+  <div [ngClass]="{ 'flex flex-col md:flex-row': fullWidthMode }">
     <img
-      class="mb-1 mx-auto h-[120px] md:h-[170px]"
-      [ngClass]="{ 'h-[200px]': !fullWidthMode, 'h-[360px]': fullWidthMode }"
+      class="mb-1 mx-auto md:mr-4 h-[100px] md:h-[120px] md:w-[120px]"
+      [ngClass]="{ 'h-[120px]': !fullWidthMode, 'h-[200px]': fullWidthMode }"
       [src]="product.image"
     />
-    <div
-      class="w-full"
-      [ngClass]="{ 'px-8 flex flex-col justify-between': fullWidthMode }"
-    >
+    
+    <div class="flex-1">
       <div>
         <h5>{{ product.category }}</h5>
         <p
@@ -19,10 +16,10 @@
           {{ product.title }}
         </p>
         <p *ngIf="fullWidthMode">
-          {{ product.description | slice:0:50 }}{{ product.description.length > 50 ? '...' : '' }}
+          {{ product.description  }}
         </p>
       </div>
-      <div class="flex justify-between">
+      <div class="flex justify-between items-center mt-2">
         <span class="text-red-400">{{ product.price | currency }}</span>
         <button (click)="onAddtoCart()">
           <mat-icon class="text-gray-500">shopping_cart</mat-icon>
