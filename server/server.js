@@ -8,9 +8,7 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 
 // Import the Stripe module and initialize it with your private token
-// const stripe = require("stripe")(
-//   "sk_test_51PVDbpRq1jUUHxJfyax6mfSLtVF11OFnTC0qWwIYAW5yTUY8Pc191AemQyj0xAwl4FsV2lNL3yWQEtXDLPrVPsOa00S9BqVbIK"
-// );
+
 const stripe = require("stripe")("process.env.STRIPE_SECRET_KEY");
 require("dotenv").config();
 // Create an instance of the Express application
