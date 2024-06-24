@@ -1,35 +1,54 @@
-<mat-drawer-container
-  [autosize]="true"
-  class="min-h-full max-w-7xl mx-auto border-x"
->
-    <mat-drawer mode="side" opened="true" class="p-6 bg-slate-200">
+<ng-container *ngIf="isMobile; else desktopLayout">
+    <div fxLayout="column" fxFlexFill>
+      <!-- Drawer for filters -->
+      <div fxFlex="none" class="p-6 bg-slate-200">
         <app-filters (categoryPickChange)="onCategoryChange($event)"></app-filters>
-    </mat-drawer>
-
-    <mat-drawer-content class="p-6 bg-pink-100">
-    <!-- Here we going to create new component -->
-    <!-- columsCountChange - is a name of the event we recieved from pp-products-header-->
-        <app-products-header 
-        (itemsCountChange)="onItemsCountChange($event)"
-        (sortChange)="onSortChange($event)"
-        (columsCountChange)="onColumsCountChange($event)"></app-products-header>
-        <!--[cols]="cols" import for dynamic cols -->
-        <!-- [rowHeight]="rowHeight" import as well -->
-        <mat-grid-list 
-        gutterSize="16"
-        [cols]="cols"
-        [rowHeight]="rowHeight"
-        >
-            <mat-grid-tile 
-            *ngFor=" let product of products"
-            >
-                <!-- fullWidthMode this mode works only when cols === 1  -->
-                <app-product-box 
-                [product]="product"
-                (addToCart)="onAddToCart($event)"
-                class="w-full" [fullWidthMode]="cols === 1" ></app-product-box>
-            </mat-grid-tile>
+      </div>
+      <!-- Drawer content for products -->
+      <div fxFlex class="p-6 bg-pink-100">
+        <app-products-header
+          (itemsCountChange)="onItemsCountChange($event)"
+          (sortChange)="onSortChange($event)"
+          (columsCountChange)="onColumsCountChange($event)"
+        ></app-products-header>
+        <mat-grid-list gutterSize="16" [cols]="cols" [rowHeight]="rowHeight">
+          <mat-grid-tile *ngFor="let product of products">
+            <app-product-box
+              [product]="product"
+              (addToCart)="onAddToCart($event)"
+              class="w-full"
+              [fullWidthMode]="cols === 1"
+            ></app-product-box>
+          </mat-grid-tile>
         </mat-grid-list>
-    </mat-drawer-content>
-    
-</mat-drawer-container>
+      </div>
+    </div>
+  </ng-container>
+  
+  <ng-template #desktopLayout>
+    <mat-drawer-container [autosize]="true" class="min-h-full max-w-7xl mx-auto border-x">
+      <!-- Drawer for filters -->
+      <mat-drawer mode="side" opened="true" class="p-6 bg-slate-200">
+        <app-filters (categoryPickChange)="onCategoryChange($event)"></app-filters>
+      </mat-drawer>
+      <!-- Drawer content for products -->
+      <mat-drawer-content class="p-6 bg-pink-100">
+        <app-products-header
+          (itemsCountChange)="onItemsCountChange($event)"
+          (sortChange)="onSortChange($event)"
+          (columsCountChange)="onColumsCountChange($event)"
+        ></app-products-header>
+        <mat-grid-list gutterSize="16" [cols]="cols" [rowHeight]="rowHeight">
+          <mat-grid-tile *ngFor="let product of products">
+            <app-product-box
+              [product]="product"
+              (addToCart)="onAddToCart($event)"
+              class="w-full"
+              [fullWidthMode]="cols === 1"
+            ></app-product-box>
+          </mat-grid-tile>
+        </mat-grid-list>
+      </mat-drawer-content>
+    </mat-drawer-container>
+  </ng-template>
+  
