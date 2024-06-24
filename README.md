@@ -2,6 +2,10 @@
 
 FruitWave is an Angular-based e-commerce platform that allows users to browse and purchase a variety of products. This README provides an overview of its features, architecture, setup instructions, and includes screenshots for visual reference.
 
+## Deployment
+
+The application is deployed and accessible at [https://fruit-wave.vercel.app/home](https://fruit-wave.vercel.app/home).
+
 ## Screenshots
 
 Include screenshots of different sections of your application here to provide a visual overview.
