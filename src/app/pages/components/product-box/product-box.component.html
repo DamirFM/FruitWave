@@ -1,27 +1,29 @@
 <!-- fullWidthMode this mode works only when cols === 1  -->
-<mat-card [ngClass]="{ 'text-center': !fullWidthMode }">
+<mat-card *ngIf="product" [ngClass]="{ 'text-center': !fullWidthMode }">
   <div [ngClass]="{ flex: fullWidthMode }">
     <img
       class="mb-1 mx-auto"
       [ngClass]="{ 'h-[200px]': !fullWidthMode, 'h-[360px]': fullWidthMode }"
-      src="https://via.placeholder.com/300"
+      [src]="product.image"
     />
     <div
       class="w-full"
       [ngClass]="{ 'px-8 flex flex-col justify-between': fullWidthMode }"
     >
       <div>
-        <h5>category</h5>
+        <h5>{{ product.category }}</h5>
         <p
           class="truncate hover:whitespace-normal"
           [ngClass]="{ truncate: !fullWidthMode }"
         >
-          title
+          {{ product.title }}
         </p>
-        <p *ngIf="fullWidthMode">description</p>
+        <p *ngIf="fullWidthMode">
+          {{ product.description }}
+        </p>
       </div>
       <div class="flex justify-between">
-        <span class="text-red-400">{{ 100 | currency }}</span>
+        <span class="text-red-400">{{ product.price | currency }}</span>
         <button (click)="onAddtoCart()">
           <mat-icon class="text-gray-500">shopping_cart</mat-icon>
         </button>
@@ -29,3 +31,5 @@
     </div>
   </div>
 </mat-card>
+
+

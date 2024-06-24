@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Cart, CartItem } from 'src/app/models/cart.model';
 import { CartService } from 'src/app/services/cart.service';
+import { HttpClient } from '@angular/common/http';
+import { loadStripe } from '@stripe/stripe-js';
 // @Component({...})
 // Decorator that marks the class as an Angular component and provides metadata about the component.
 @Component({
@@ -45,17 +47,56 @@ export class CartComponent implements OnInit {
 
 
   // Defines a constructor for the CartComponent class. The constructor is empty because no initial setup or dependency injection is needed.
-  constructor(private CartService: CartService) { }
+  constructor(private cartService: CartService, private http: HttpClient) { }
 
   // Defines the ngOnInit method, which is a lifecycle hook that Angular calls after creating the component. This method is used to perform component initialization logic.
   ngOnInit(): void {
-    // Set dataSource to the items in the cart
+    
+ 
+    this.cartService.cart.subscribe((_cart: Cart) => {
+      this.cart = _cart;
+      // Set dataSource to the items in the cart
     // this.dataSource = this.cart.items;
     // Sets the dataSource property to the items in the cart. This populates the dataSource array with the cart items, making them available for display in the table.
-    this.dataSource = this.cart.items;
+      this.dataSource = this.cart.items;
+    })
   }
   // Defines a method called getTotal that calculates the total price of all items in the cart. The method uses the reduce function to iterate over the items array and calculate the total price by summing the product of the item price and quantity for each item.
+  // getTotal already decleared in cart.service.ts file
+  // we re-use the method here
   getTotal(items: Array<CartItem>): number {
-   return this.CartService.getTotal(this.cart.items);
+   return this.cartService.getTotal(items);
+  }
+
+  onClearCart(): void {
+    this.cartService.clearCart();
+  }
+
+  onRemoveItem(item: CartItem): void {
+    this.cartService.removeFromCart(item);
+  }
+
+  onAddQuantity(item: CartItem): void {
+    this.cartService.addToCart(item);
+  }
+
+  onRemoveQuantity(item: CartItem): void {
+    if (item.quantity > 1) {
+      this.cartService.removeQuantity(item);
+    } else {
+      this.cartService.removeQuantity(item);
+    }
+  }
+  onCheckout(): void {
+    this.http
+      .post('http://localhost:4242/checkout', {
+        items: this.cart.items,
+      })
+      .subscribe(async (res: any) => {
+        let stripe = await loadStripe('pk_test_51PVDbpRq1jUUHxJf32MC4IsO5E6nR5pKY0q1omwsipXvMVJDUrft2BxeS3w0tSmG0mo5S9GIIwS4yG9SundRI6ZV002APgyQyz');
+        stripe?.redirectToCheckout({
+          sessionId: res.id,
+        });
+      });
   }
 }

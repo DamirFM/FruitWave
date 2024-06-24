@@ -1,0 +1,13 @@
+.mat-drawer-container {
+    display: flex;
+    height: 100%; /* Ensure container takes full height */
+}
+
+.mat-drawer {
+    flex: 0 0 auto; /* Prevent sidebar from growing or shrinking */
+}
+
+.mat-drawer-content {
+    flex: 1 1 auto; /* Allow main content area to grow and take remaining space */
+    overflow-y: auto; /* Enable vertical scrolling if content overflows */
+}

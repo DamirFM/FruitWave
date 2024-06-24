@@ -13,15 +13,7 @@ cols: any;
 rowHeight: any;
 
   // Input for product data
-  product: Product | undefined = {
-    name: 'New Balance',
-    id: 1,
-    title: 'New nalance',
-    price: 150,
-    category: 'shoes',
-    description: 'Shop the iconic 990 collection from New Balance. These timeless models have earned their name as a staple in fashion footwear.',
-    image: 'https://via.placeholder.com/150',
-  };
+  @Input() product: Product | undefined 
   // Output - this is the way how we communicate between parent and child components
   @Output() addToCart = new EventEmitter();
 

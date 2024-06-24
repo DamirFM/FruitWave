@@ -19,6 +19,7 @@ import { MatSnackBar } from "@angular/material/snack-bar";
 export class CartService {
   // Initializes a BehaviorSubject named cart with an initial value of an empty array ({ items: [] }). This BehaviorSubject holds the current state of the cart.
   cart = new BehaviorSubject<Cart>({ items: [] });
+
   // Defines the constructor of the CartService class. It injects the MatSnackBar service (_snackBar) to display messages to the user.
   constructor(private _snackBar: MatSnackBar) {}
   // Method that adds a product to the cart. It takes a product object as an argument and adds it to the cart.
@@ -47,6 +48,51 @@ export class CartService {
     return items
       .map((item) => item.price * item.quantity)
       .reduce((prev, current) => prev + current, 0);
+  }
+
+  clearCart(): void {
+    this.cart.next({ items: [] });
+    this._snackBar.open('Cart is cleared.', 'Ok', {
+      duration: 3000,
+    });
+  } 
+  removeFromCart(item: CartItem, updateCart = true): CartItem[] {
+    const filteredItems = this.cart.value.items.filter(
+      (_item) => _item.id !== item.id
+    );
+
+    if (updateCart) {
+      this.cart.next({ items: filteredItems });
+      this._snackBar.open('1 item removed from cart.', 'Ok', {
+        duration: 3000,
+      });
+    }
+
+    return filteredItems;
+  }
+  
+  removeQuantity(item: CartItem): void {
+    let itemForRemoval!: CartItem;
+
+    let filteredItems = this.cart.value.items.map((_item) => {
+      if (_item.id === item.id) {
+        _item.quantity--;
+        if (_item.quantity === 0) {
+          itemForRemoval = _item;
+        }
+      }
+
+      return _item;
+    });
+
+    if (itemForRemoval) {
+      filteredItems = this.removeFromCart(itemForRemoval, false);
+    }
+
+    this.cart.next({ items: filteredItems });
+    this._snackBar.open('1 item removed from cart.', 'Ok', {
+      duration: 3000,
+    });
   }
 }
 // export CartService to the home component

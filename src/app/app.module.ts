@@ -26,6 +26,7 @@ import { FiltersComponent } from './pages/components/filters/filters.component';
 import { ProductBoxComponent } from './pages/components/product-box/product-box.component';
 import { CartComponent } from './pages/cart/cart.component';
 import { CartService } from './services/cart.service';
+import { StoreService } from './services/store.service';
 
 // NgModule decorator is a function that takes a metadata object that tells Angular 
 // how to compile and launch the application.
@@ -59,7 +60,8 @@ import { CartService } from './services/cart.service';
     HttpClientModule,
   ],
   providers: [
-    CartService
+    CartService,
+    StoreService
   ],
   bootstrap: [AppComponent]
 })

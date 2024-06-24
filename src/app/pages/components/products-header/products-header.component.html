@@ -2,15 +2,15 @@
     <div class="flex justify-between items-center">
       <div>
         <button mat-button [matMenuTriggerFor]="sortByMenu">
-          <mat-icon>{{ sort === 'Low' ? 'arrow_upward' : (sort === 'High' ? 'arrow_downward' : 'sort') }}</mat-icon>
+          <mat-icon>{{ sort === 'asc' ? 'arrow_upward' : (sort === 'desc' ? 'arrow_downward' : 'sort') }}</mat-icon>
           <mat-icon>arrow_drop_down</mat-icon>
         </button>
         <mat-menu #sortByMenu="matMenu">
-          <button (click)="onSortUpdated('Low')" mat-menu-item>
-            Price: Low to High
+          <button (click)="onSortUpdated('asc')" mat-menu-item>
+            A-Z
           </button>
-          <button (click)="onSortUpdated('High')" mat-menu-item>
-            Price: High to Low
+          <button (click)="onSortUpdated('desc')" mat-menu-item>
+            Z-A
           </button>
         </mat-menu>
       </div>

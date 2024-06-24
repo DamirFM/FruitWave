@@ -28,10 +28,11 @@ export class HeaderComponent  {
     reduce((prev, curr) => prev + curr, 0);
   }
 
-  constructor(private CartService: CartService) { }
-
+  constructor(private cartService: CartService) { }
+  // getTotal already decleared in cart.service.ts file
+  // we re-use the method here
   getTotal(items: Array<CartItem>): number {
-    return this.CartService.getTotal(this.cart.items);
+    return this.cartService.getTotal(items);
    }
 
 }
