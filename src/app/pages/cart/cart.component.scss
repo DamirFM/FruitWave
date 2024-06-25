@@ -1,0 +1,72 @@
+/* Add your custom CSS styles */
+.cell-content {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.product-details {
+  display: flex;
+  flex-direction: column;
+  margin-left: 1rem;
+}
+
+.quantity-control {
+  display: flex;
+  align-items: center;
+}
+
+@media (max-width: 768px) {
+  .cell-content {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .product-details {
+    margin-left: 0;
+    margin-top: 1rem;
+  }
+
+  .product-img {
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto;
+  }
+
+  .mobile-table .mat-header-row,
+  .mobile-table .mat-footer-row {
+    display: none;
+  }
+
+  .mobile-table .mat-row {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .mobile-table .mat-cell {
+    width: 100%;
+    display: block;
+    border-bottom: 1px solid #ccc;
+  }
+
+  .mobile-view {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .mobile-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    border: 1px solid #ccc;
+    padding: 1rem;
+  }
+
+  .mobile-actions {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+  }
+}
