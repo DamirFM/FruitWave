@@ -1,3 +1,5 @@
+require("dotenv").config(); // Load environment variables at the top
+
 // Import the Express module
 const express = require("express");
 
@@ -8,9 +10,8 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 
 // Import the Stripe module and initialize it with your private token
+const stripe = require("stripe")(process.env.STRIPE_SECRET_KEY);
 
-const stripe = require("stripe")("process.env.STRIPE_SECRET_KEY");
-require("dotenv").config();
 // Create an instance of the Express application
 const app = express();
 
@@ -126,4 +127,5 @@ app.post("/checkout", async (req, res, next) => {
 // Start the server and listen on port 4242
 app.listen(4242, () => {
   console.log("App is running on port 4242");
+  console.log("Stripe Secret Key:", process.env.STRIPE_SECRET_KEY); // Print the secret key
 });
