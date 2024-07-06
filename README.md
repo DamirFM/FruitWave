@@ -1,4 +1,4 @@
-# FruitWave 🌊
+# FruitWave 
 
 FruitWave is an Angular-based e-commerce platform that allows users to browse and purchase a variety of products. This is an overview of features, architecture, setup instructions, and includes screenshots for visual reference.
 
