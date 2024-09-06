@@ -38,8 +38,6 @@ Different sections of application here to provide a visual overview.
 - **Shopping Cart**: Integrated shopping cart functionality with real-time updates on product quantity and total cost.
 - **Stripe Integration**: Seamless checkout experience using Stripe for secure payment processing.
 
-## Components and Layout
-
 ### Mat-Toolbar
 
 The toolbar component at the top of the page includes:
@@ -77,10 +75,6 @@ The toolbar component at the top of the page includes:
 3. **Run Development Server**: `ng serve`
 4. **Open Browser**: Navigate to `http://localhost:4200/` to view the application.
 
-## Contributors
-
-- **Your Name**: Role - Description
-- **Contributor 1**: Role - Description
 
 ## Additional Resources
 
